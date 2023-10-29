@@ -3,6 +3,9 @@ package com.example.basic.codelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -68,7 +71,13 @@ private fun Greetings(
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val expanded = remember { mutableStateOf(false) }
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
+    val extraPadding by animateDpAsState(
+        if (expanded.value) 48.dp else 0.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
 
     // A surface container using the 'background' color from the theme
     Surface(modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp), color = MaterialTheme.colorScheme.primary) {
@@ -76,7 +85,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(bottom = extraPadding)
+                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello, ")
                 Text(text = name)
