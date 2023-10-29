@@ -28,21 +28,21 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MyApp(modifier: Modifier = Modifier, names: List<String> = listOf("World", "Compose")) {
-    // A surface container using the 'background' color from the theme
-    Surface(modifier = modifier, color = MaterialTheme.colorScheme.primary) {
-        Column(modifier) {
-            names.forEach { name ->
-                Greeting(name)
-            }
+    Column(modifier = Modifier.padding(4.dp)) {
+        names.forEach { name ->
+            Greeting(name)
         }
     }
 }
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.padding(24.dp)) {
-        Text(text = "Hello, ")
-        Text(text = name)
+    // A surface container using the 'background' color from the theme
+    Surface(modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp), color = MaterialTheme.colorScheme.primary) {
+        Column(modifier = Modifier.padding(24.dp)) {
+            Text(text = "Hello, ")
+            Text(text = name)
+        }
     }
 }
 
