@@ -27,10 +27,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MyApp(modifier: Modifier, names: List<String> = listOf("World", "Compose")) {
+private fun MyApp(modifier: Modifier = Modifier, names: List<String> = listOf("World", "Compose")) {
     // A surface container using the 'background' color from the theme
     Surface(modifier = modifier, color = MaterialTheme.colorScheme.primary) {
-        Column() {
+        Column(modifier) {
             names.forEach { name ->
                 Greeting(name)
             }
@@ -40,13 +40,16 @@ private fun MyApp(modifier: Modifier, names: List<String> = listOf("World", "Com
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Hello, $name!")
+    Column(modifier = Modifier.padding(24.dp)) {
+        Text(text = "Hello, ")
+        Text(text = name)
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     BasicCodelabTheme {
-        Greeting("Android")
+        MyApp()
     }
 }
