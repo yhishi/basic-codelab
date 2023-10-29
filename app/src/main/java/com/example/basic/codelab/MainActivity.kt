@@ -43,11 +43,12 @@ private fun MyApp(modifier: Modifier = Modifier, names: List<String> = listOf("W
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     val expanded = remember { mutableStateOf(false) }
+    val extraPadding = if (expanded.value) 48.dp else 0.dp
 
     // A surface container using the 'background' color from the theme
     Surface(modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp), color = MaterialTheme.colorScheme.primary) {
         Row(modifier = Modifier.padding(24.dp)) {
-            Column(modifier = Modifier.weight(1f)) {
+            Column(modifier = Modifier.weight(1f).padding(bottom = extraPadding)) {
                 Text(text = "Hello, ")
                 Text(text = name)
             }
