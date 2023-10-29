@@ -1,5 +1,6 @@
 package com.example.basic.codelab
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -125,6 +126,12 @@ fun OnboardingScreen(
     }
 }
 
+@Preview(
+    showBackground = true,
+    widthDp = 320,
+    uiMode = UI_MODE_NIGHT_YES,
+    name = "Dark"
+)
 @Preview(showBackground = true)
 @Composable
 fun GreetingsPreview() {
